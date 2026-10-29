@@ -46,4 +46,26 @@ class WizardTest {
 
         assertEquals(70, evilWizard.mana)
     }
+
+    @Test
+    fun train_amountOfManaIsOverFive_trainCorrectly(){
+        evilWizard.mana = 6
+        evilWizard.spellPower = 2
+        evilWizard.train() // mana over 5, should succeed
+
+        assertEquals(1, evilWizard.mana) // 6 - 5 = 1
+        assertEquals(3, evilWizard.spellPower) // 2 + 1 = 3
+    }
+
+    @Test
+    fun train_amountOfManaIsNotOverFive_trainIncorrectly(){
+        evilWizard.mana = 3
+        evilWizard.spellPower = 2
+        evilWizard.train() // mana not over 5, should fail, no update
+
+        assertEquals(3, evilWizard.mana) // no change, still 3
+        assertEquals(2, evilWizard.spellPower) // no change, still 2
+    }
+
+
 }
